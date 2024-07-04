@@ -25,12 +25,25 @@ public class CruddemoApplication {
 		return runner -> {
 			//createMultipleStudents(studentDAO);
 			//readStudent(studentDAO);
+			updateFirstStudentTo("Bart", "Simpson", studentDAO);
 			displayAllTheStudents(studentDAO);
 		};
 	}
 
+	// Demo method utilising the DAO that changes some fields of the first entity object in the database
+	private void updateFirstStudentTo(String firstName, String secondName, StudentDAO studentDAO){
+		int studentId = 1;
+		// Retrieving the student with this id
+		Student firstStudent = studentDAO.findById(studentId);
+		// Changing some of the field values of the returned student
+		firstStudent.setFirstName(firstName);
+		firstStudent.setLastName(secondName);
+		// Uses the update function of the DAO to update the student entity based on the primary key
+		studentDAO.update(firstStudent);
+	}
+
 	private void displayAllTheStudents(StudentDAO studentDAO) {
-		System.out.println(studentDAO.findByLastName("burger van"));
+		System.out.println(studentDAO.findAll());
 	}
 
 	private void readStudent(StudentDAO studentDAO) {

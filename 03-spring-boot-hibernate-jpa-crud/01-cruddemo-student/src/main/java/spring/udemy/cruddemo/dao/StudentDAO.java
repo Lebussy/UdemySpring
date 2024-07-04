@@ -19,4 +19,7 @@ public interface StudentDAO {
     // Abstract method for finding a student by last name
     List<Student> findByLastName(String studentLastName);
 
+    // Abstract method for updating a student entity
+    void update(Student student);
+
 }
